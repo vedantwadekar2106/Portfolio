@@ -88,7 +88,7 @@
             color: #6D5DFC;
         }
 
-        /* ───── HAMBURGER (hidden by default) ───── */
+        /* ───── HAMBURGER ───── */
         .hamburger {
             display: none;
             flex-direction: column;
@@ -131,13 +131,38 @@
             padding: 120px 20px 60px;
         }
 
-        .hero-tag {
-            color: #6D5DFC;
-            font-weight: 600;
+        /* ── TYPING CONTAINER ── */
+        .typing-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
             margin-bottom: 20px;
-            letter-spacing: 1px;
         }
 
+        .typing-text {
+            font-family: 'Courier New', Courier, monospace;
+            font-size: 1.05rem;
+            font-weight: 600;
+            color: #6D5DFC;
+            white-space: nowrap;
+            overflow: hidden;
+            border-right: 3px solid #6D5DFC;
+            width: 0;
+            /* animation will be applied via JS for looping */
+        }
+
+        /* Keyframes for typing reveal */
+        @keyframes typing {
+            from { width: 0; }
+            to   { width: 33ch; }
+        }
+
+        /* Blinking cursor */
+        @keyframes blink {
+            50% { border-color: transparent; }
+        }
+
+        /* ── HERO REST ── */
         .hero h1 {
             font-size: 7rem;
             font-weight: 900;
@@ -354,7 +379,6 @@
 
         /* ─── TABLET PORTRAIT ─── */
         @media (max-width: 820px) {
-            /* navbar */
             nav {
                 padding: 16px 24px;
             }
@@ -399,7 +423,6 @@
                 border-bottom: none;
             }
 
-            /* hero */
             .hero h1 {
                 font-size: 4rem;
             }
@@ -418,7 +441,10 @@
                 font-size: 0.95rem;
             }
 
-            /* stats */
+            .typing-text {
+                font-size: 0.95rem;
+            }
+
             .stats {
                 grid-template-columns: repeat(2, 1fr);
                 gap: 18px;
@@ -432,7 +458,6 @@
                 font-size: 2.2rem;
             }
 
-            /* sections */
             section {
                 padding: 80px 5%;
             }
@@ -442,7 +467,6 @@
                 margin-bottom: 35px;
             }
 
-            /* skills */
             .skills-grid {
                 grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
                 gap: 16px;
@@ -453,7 +477,6 @@
                 font-size: 0.95rem;
             }
 
-            /* projects */
             .project-grid {
                 grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
                 gap: 24px;
@@ -467,12 +490,10 @@
                 font-size: 1.3rem;
             }
 
-            /* about */
             #about p {
                 font-size: 1rem;
             }
 
-            /* contact */
             .contact-info p {
                 font-size: 1rem;
             }
@@ -519,11 +540,6 @@
                 margin-top: 14px;
             }
 
-            .hero-tag {
-                font-size: 0.8rem;
-                margin-bottom: 14px;
-            }
-
             .hero-text {
                 font-size: 0.95rem;
                 margin-top: 20px;
@@ -545,7 +561,12 @@
                 text-align: center;
             }
 
-            /* stats */
+            .typing-text {
+                font-size: 0.85rem;
+                border-right-width: 2px;
+                letter-spacing: 0.5px;
+            }
+
             .stats {
                 grid-template-columns: 1fr 1fr;
                 gap: 14px;
@@ -564,7 +585,6 @@
                 font-size: 0.85rem;
             }
 
-            /* sections */
             section {
                 padding: 60px 5%;
             }
@@ -574,7 +594,6 @@
                 margin-bottom: 28px;
             }
 
-            /* skills */
             .skills-grid {
                 grid-template-columns: repeat(2, 1fr);
                 gap: 12px;
@@ -586,7 +605,6 @@
                 border-radius: 14px;
             }
 
-            /* projects */
             .project-grid {
                 grid-template-columns: 1fr;
                 gap: 20px;
@@ -606,13 +624,11 @@
                 font-size: 0.9rem;
             }
 
-            /* about */
             #about p {
                 font-size: 0.95rem;
                 line-height: 1.8;
             }
 
-            /* contact */
             .contact-info p {
                 font-size: 0.95rem;
             }
@@ -636,6 +652,12 @@
 
             .hero-text {
                 font-size: 0.85rem;
+            }
+
+            .typing-text {
+                font-size: 0.75rem;
+                letter-spacing: 0.3px;
+                border-right-width: 2px;
             }
 
             .stats {
@@ -680,5 +702,13 @@
             .hero-btns a {
                 padding: 12px 16px;
                 font-size: 0.85rem;
+            }
+        }
+
+        /* ─── CURSOR ADJUSTMENT ON VERY SMALL SCREENS ─── */
+        @media (max-width: 360px) {
+            .typing-text {
+                font-size: 0.7rem;
+                border-right-width: 1.5px;
             }
         }
