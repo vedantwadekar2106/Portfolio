@@ -1,3 +1,4 @@
+
         /* ───── RESET & BASE ───── */
         * {
             margin: 0;
@@ -148,18 +149,21 @@
             overflow: hidden;
             border-right: 3px solid #6D5DFC;
             width: 0;
-            /* animation will be applied via JS for looping */
         }
 
-        /* Keyframes for typing reveal */
         @keyframes typing {
-            from { width: 0; }
-            to   { width: 33ch; }
+            from {
+                width: 0;
+            }
+            to {
+                width: 33ch;
+            }
         }
 
-        /* Blinking cursor */
         @keyframes blink {
-            50% { border-color: transparent; }
+            50% {
+                border-color: transparent;
+            }
         }
 
         /* ── HERO REST ── */
@@ -261,6 +265,48 @@
             font-size: 1.1rem;
         }
 
+        .about-btns {
+            display: flex;
+            gap: 18px;
+            margin-top: 35px;
+            flex-wrap: wrap;
+        }
+
+        .about-btns a {
+            text-decoration: none;
+            color: #fff;
+            padding: 14px 34px;
+            border-radius: 50px;
+            font-weight: 600;
+            font-size: 0.95rem;
+            transition: .3s;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .about-btns .btn-resume {
+            background: #6D5DFC;
+            border: 1px solid #6D5DFC;
+        }
+
+        .about-btns .btn-resume:hover {
+            background: transparent;
+            transform: translateY(-3px);
+            box-shadow: 0 0 30px rgba(109, 93, 252, .25);
+        }
+
+        .about-btns .btn-projects {
+            background: transparent;
+            border: 1px solid rgba(255, 255, 255, .25);
+        }
+
+        .about-btns .btn-projects:hover {
+            background: rgba(109, 93, 252, .15);
+            border-color: #6D5DFC;
+            transform: translateY(-3px);
+        }
+
         /* ───── SKILLS ───── */
         .skills-grid {
             display: grid;
@@ -286,7 +332,7 @@
         /* ───── PROJECTS ───── */
         .project-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
             gap: 30px;
         }
 
@@ -297,6 +343,8 @@
             border-radius: 25px;
             border: 1px solid rgba(255, 255, 255, .08);
             transition: .4s ease;
+            display: flex;
+            flex-direction: column;
         }
 
         .project-card:hover {
@@ -306,17 +354,196 @@
 
         .project-card h3 {
             font-size: 1.5rem;
-            margin-bottom: 15px;
+            margin-bottom: 6px;
+        }
+
+        .project-card .repo-link {
+            font-size: 0.85rem;
+            color: #6D5DFC;
+            text-decoration: none;
+            margin-bottom: 14px;
+            display: inline-block;
+            transition: .3s;
+        }
+
+        .project-card .repo-link:hover {
+            color: #8f82ff;
+            text-decoration: underline;
         }
 
         .project-card p {
             color: #9b9b9b;
             line-height: 1.7;
+            flex: 1;
         }
 
-        /* ───── CONTACT ───── */
+        .project-card .tech-stack {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-top: 18px;
+        }
+
+        .project-card .tech-stack span {
+            background: rgba(109, 93, 252, .15);
+            border: 1px solid rgba(109, 93, 252, .2);
+            padding: 5px 16px;
+            border-radius: 30px;
+            font-size: 0.75rem;
+            font-weight: 500;
+            color: #c4c4ff;
+            letter-spacing: 0.3px;
+        }
+
+        /* ───── CONTACT FORM ───── */
+        .form-section {
+            padding-bottom: 60px;
+        }
+
+        .form-section .form-subtitle {
+            color: #a1a1aa;
+            font-size: 1.1rem;
+            max-width: 650px;
+            margin-bottom: 40px;
+            line-height: 1.7;
+        }
+
+        .contact-form {
+            max-width: 720px;
+            background: rgba(20, 20, 25, .7);
+            backdrop-filter: blur(12px);
+            padding: 50px 55px;
+            border-radius: 30px;
+            border: 1px solid rgba(255, 255, 255, .06);
+            box-shadow: 0 25px 60px rgba(0, 0, 0, .5);
+        }
+
+        .form-group {
+            margin-bottom: 24px;
+        }
+
+        .form-group label {
+            display: block;
+            font-size: 0.9rem;
+            font-weight: 600;
+            color: #d4d4d4;
+            margin-bottom: 8px;
+            letter-spacing: 0.3px;
+        }
+
+        .form-group label .required {
+            color: #ff6b6b;
+            margin-left: 2px;
+        }
+
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 14px 20px;
+            background: rgba(255, 255, 255, .04);
+            border: 1px solid rgba(255, 255, 255, .08);
+            border-radius: 14px;
+            color: #fff;
+            font-size: 1rem;
+            font-family: 'Inter', sans-serif;
+            transition: .3s ease;
+            outline: none;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus {
+            border-color: #6D5DFC;
+            background: rgba(109, 93, 252, .06);
+            box-shadow: 0 0 0 4px rgba(109, 93, 252, .12);
+        }
+
+        .form-group input::placeholder,
+        .form-group textarea::placeholder {
+            color: #5a5a6a;
+            font-weight: 400;
+        }
+
+        .form-group textarea {
+            resize: vertical;
+            min-height: 140px;
+            line-height: 1.6;
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+
+        .form-submit {
+            margin-top: 10px;
+        }
+
+        .form-submit button {
+            width: 100%;
+            padding: 16px 30px;
+            background: #6D5DFC;
+            border: none;
+            border-radius: 50px;
+            color: #fff;
+            font-size: 1.05rem;
+            font-weight: 600;
+            font-family: 'Inter', sans-serif;
+            cursor: pointer;
+            transition: .3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+            letter-spacing: 0.3px;
+        }
+
+        .form-submit button:hover {
+            background: #5b4be0;
+            transform: translateY(-2px);
+            box-shadow: 0 12px 40px rgba(109, 93, 252, .3);
+        }
+
+        .form-submit button:active {
+            transform: scale(.97);
+        }
+
+        .form-submit button:disabled {
+            opacity: .6;
+            cursor: not-allowed;
+            transform: none;
+            box-shadow: none;
+        }
+
+        /* ─── FORM STATUS MESSAGES ─── */
+        .form-status {
+            margin-top: 20px;
+            padding: 14px 20px;
+            border-radius: 14px;
+            font-weight: 500;
+            font-size: 0.95rem;
+            display: none;
+            text-align: center;
+        }
+
+        .form-status.success {
+            display: block;
+            background: rgba(46, 213, 115, .12);
+            border: 1px solid rgba(46, 213, 115, .25);
+            color: #2ed573;
+        }
+
+        .form-status.error {
+            display: block;
+            background: rgba(255, 107, 107, .12);
+            border: 1px solid rgba(255, 107, 107, .25);
+            color: #ff6b6b;
+        }
+
+        /* ───── CONTACT INFO ───── */
         #contact {
             text-align: center;
+            padding-top: 60px;
         }
 
         #contact p {
@@ -351,29 +578,26 @@
             .hero h1 {
                 font-size: 5.5rem;
             }
-
             .hero h2 {
                 font-size: 1.6rem;
             }
-
             section h2 {
                 font-size: 2.5rem;
             }
-
             section {
                 padding: 100px 6%;
             }
-
             .stats {
                 gap: 20px;
             }
-
             .stat-card {
                 padding: 30px;
             }
-
             .stat-card h2 {
                 font-size: 2.5rem;
+            }
+            .contact-form {
+                padding: 40px 35px;
             }
         }
 
@@ -382,11 +606,9 @@
             nav {
                 padding: 16px 24px;
             }
-
             .hamburger {
                 display: flex;
             }
-
             .nav-links {
                 position: absolute;
                 top: 100%;
@@ -405,12 +627,10 @@
                 border-top: none;
                 transition: max-height .4s ease, padding .3s ease;
             }
-
             .nav-links.open {
                 max-height: 400px;
                 padding: 20px 0;
             }
-
             .nav-links a {
                 padding: 14px 0;
                 width: 100%;
@@ -418,86 +638,78 @@
                 font-size: 1.05rem;
                 border-bottom: 1px solid rgba(255, 255, 255, .04);
             }
-
             .nav-links a:last-child {
                 border-bottom: none;
             }
-
             .hero h1 {
                 font-size: 4rem;
             }
-
             .hero h2 {
                 font-size: 1.4rem;
             }
-
             .hero-text {
                 font-size: 1rem;
                 padding: 0 10px;
             }
-
             .hero-btns a {
                 padding: 13px 30px;
                 font-size: 0.95rem;
             }
-
             .typing-text {
                 font-size: 0.95rem;
             }
-
             .stats {
                 grid-template-columns: repeat(2, 1fr);
                 gap: 18px;
             }
-
             .stat-card {
                 padding: 28px 20px;
             }
-
             .stat-card h2 {
                 font-size: 2.2rem;
             }
-
             section {
                 padding: 80px 5%;
             }
-
             section h2 {
                 font-size: 2.2rem;
                 margin-bottom: 35px;
             }
-
             .skills-grid {
                 grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
                 gap: 16px;
             }
-
             .skill-card {
                 padding: 28px 16px;
                 font-size: 0.95rem;
             }
-
             .project-grid {
                 grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
                 gap: 24px;
             }
-
             .project-card {
                 padding: 28px;
             }
-
             .project-card h3 {
                 font-size: 1.3rem;
             }
-
             #about p {
                 font-size: 1rem;
             }
-
+            .about-btns a {
+                padding: 12px 28px;
+                font-size: 0.9rem;
+            }
+            .form-row {
+                grid-template-columns: 1fr;
+                gap: 0;
+            }
+            .contact-form {
+                padding: 35px 28px;
+            }
             .contact-info p {
                 font-size: 1rem;
             }
-
             footer {
                 margin-top: 60px;
                 padding: 28px 20px;
@@ -512,40 +724,32 @@
                 width: 94%;
                 border-radius: 16px;
             }
-
             nav {
                 padding: 14px 20px;
             }
-
             nav h2 {
                 font-size: 1.3rem;
             }
-
             .hamburger span {
                 width: 22px;
                 height: 2px;
             }
-
             .hero {
                 padding: 110px 16px 40px;
                 min-height: 90vh;
             }
-
             .hero h1 {
                 font-size: 2.8rem;
             }
-
             .hero h2 {
                 font-size: 1.15rem;
                 margin-top: 14px;
             }
-
             .hero-text {
                 font-size: 0.95rem;
                 margin-top: 20px;
                 line-height: 1.7;
             }
-
             .hero-btns {
                 gap: 14px;
                 margin-top: 30px;
@@ -553,86 +757,103 @@
                 width: 100%;
                 max-width: 320px;
             }
-
             .hero-btns a {
                 padding: 14px 20px;
                 font-size: 0.95rem;
                 width: 100%;
                 text-align: center;
             }
-
             .typing-text {
                 font-size: 0.85rem;
                 border-right-width: 2px;
                 letter-spacing: 0.5px;
             }
-
             .stats {
                 grid-template-columns: 1fr 1fr;
                 gap: 14px;
             }
-
             .stat-card {
                 padding: 22px 16px;
                 border-radius: 18px;
             }
-
             .stat-card h2 {
                 font-size: 2rem;
             }
-
             .stat-card p {
                 font-size: 0.85rem;
             }
-
             section {
                 padding: 60px 5%;
             }
-
             section h2 {
                 font-size: 1.8rem;
                 margin-bottom: 28px;
             }
-
             .skills-grid {
                 grid-template-columns: repeat(2, 1fr);
                 gap: 12px;
             }
-
             .skill-card {
                 padding: 20px 12px;
                 font-size: 0.85rem;
                 border-radius: 14px;
             }
-
             .project-grid {
                 grid-template-columns: 1fr;
                 gap: 20px;
             }
-
             .project-card {
                 padding: 24px 20px;
                 border-radius: 18px;
             }
-
             .project-card h3 {
                 font-size: 1.2rem;
-                margin-bottom: 10px;
+                margin-bottom: 6px;
             }
-
             .project-card p {
                 font-size: 0.9rem;
             }
-
+            .project-card .tech-stack span {
+                font-size: 0.7rem;
+                padding: 4px 12px;
+            }
             #about p {
                 font-size: 0.95rem;
                 line-height: 1.8;
             }
-
+            .about-btns {
+                flex-direction: column;
+                width: 100%;
+                max-width: 300px;
+            }
+            .about-btns a {
+                justify-content: center;
+                padding: 13px 20px;
+                font-size: 0.9rem;
+                width: 100%;
+            }
+            .form-section .form-subtitle {
+                font-size: 0.95rem;
+            }
+            .contact-form {
+                padding: 28px 20px;
+                border-radius: 22px;
+            }
+            .form-group input,
+            .form-group textarea {
+                padding: 12px 16px;
+                font-size: 0.95rem;
+            }
+            .form-group label {
+                font-size: 0.85rem;
+            }
+            .form-submit button {
+                padding: 14px 20px;
+                font-size: 0.95rem;
+            }
             .contact-info p {
                 font-size: 0.95rem;
             }
-
             footer {
                 margin-top: 40px;
                 padding: 22px 16px;
@@ -645,63 +866,67 @@
             .hero h1 {
                 font-size: 2.2rem;
             }
-
             .hero h2 {
                 font-size: 1rem;
             }
-
             .hero-text {
                 font-size: 0.85rem;
             }
-
             .typing-text {
                 font-size: 0.75rem;
                 letter-spacing: 0.3px;
                 border-right-width: 2px;
             }
-
             .stats {
                 grid-template-columns: 1fr 1fr;
                 gap: 10px;
             }
-
             .stat-card {
                 padding: 18px 12px;
             }
-
             .stat-card h2 {
                 font-size: 1.6rem;
             }
-
             .stat-card p {
                 font-size: 0.75rem;
             }
-
             section h2 {
                 font-size: 1.5rem;
             }
-
             .skills-grid {
                 grid-template-columns: 1fr 1fr;
                 gap: 10px;
             }
-
             .skill-card {
                 padding: 16px 10px;
                 font-size: 0.8rem;
             }
-
             .project-card {
                 padding: 20px 16px;
             }
-
             .project-card h3 {
                 font-size: 1.05rem;
             }
-
             .hero-btns a {
                 padding: 12px 16px;
                 font-size: 0.85rem;
+            }
+            .about-btns a {
+                padding: 11px 16px;
+                font-size: 0.85rem;
+            }
+            .contact-form {
+                padding: 22px 16px;
+                border-radius: 18px;
+            }
+            .form-group input,
+            .form-group textarea {
+                padding: 10px 14px;
+                font-size: 0.9rem;
+            }
+            .form-submit button {
+                padding: 12px 16px;
+                font-size: 0.9rem;
             }
         }
 

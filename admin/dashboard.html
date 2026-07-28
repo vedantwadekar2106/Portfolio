@@ -1,0 +1,880 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>Portfolio Admin Dashboard</title>
+
+    <link rel="stylesheet"
+          href="css/admin.css">
+
+</head>
+
+<body>
+
+    <!-- ===================================================== -->
+    <!-- Mobile Overlay -->
+    <!-- ===================================================== -->
+
+    <div class="sidebar-overlay" id="sidebarOverlay"></div>
+
+    <!-- ===================================================== -->
+    <!-- Sidebar -->
+    <!-- ===================================================== -->
+
+    <aside class="sidebar" id="sidebar">
+
+        <div class="sidebar-top">
+
+            <div class="logo">
+
+                <div class="logo-icon">
+                    P
+                </div>
+
+                <div class="logo-text">
+
+                    <h2>Portfolio</h2>
+
+                    <span>Admin Panel</span>
+
+                </div>
+
+            </div>
+
+            <button class="close-sidebar"
+                    id="closeSidebar">
+
+                ✕
+
+            </button>
+
+        </div>
+
+        <nav class="sidebar-nav">
+
+            <ul>
+
+                <li class="active">
+
+                    <a href="dashboard.html">
+
+                        <span>🏠</span>
+
+                        <span>Dashboard</span>
+
+                    </a>
+
+                </li>
+
+                <li>
+
+                    <a href="projects.html">
+
+                        <span>💼</span>
+
+                        <span>Projects</span>
+
+                    </a>
+
+                </li>
+
+                <li>
+
+                    <a href="skills.html">
+
+                        <span>🧠</span>
+
+                        <span>Skills</span>
+
+                    </a>
+
+                </li>
+
+                <li>
+
+                    <a href="experience.html">
+
+                        <span>📈</span>
+
+                        <span>Experience</span>
+
+                    </a>
+
+                </li>
+
+                <li>
+
+                    <a href="education.html">
+
+                        <span>🎓</span>
+
+                        <span>Education</span>
+
+                    </a>
+
+                </li>
+
+                <li>
+
+                    <a href="certificates.html">
+
+                        <span>🏆</span>
+
+                        <span>Certificates</span>
+
+                    </a>
+
+                </li>
+
+                <li>
+
+                    <a href="messages.html">
+
+                        <span>💬</span>
+
+                        <span>Messages</span>
+
+                    </a>
+
+                </li>
+
+                <li>
+
+                    <a href="analytics.html">
+
+                        <span>📊</span>
+
+                        <span>Analytics</span>
+
+                    </a>
+
+                </li>
+
+                <li>
+
+                    <a href="settings.html">
+
+                        <span>⚙️</span>
+
+                        <span>Settings</span>
+
+                    </a>
+
+                </li>
+
+            </ul>
+
+        </nav>
+
+        <div class="sidebar-footer">
+
+            <button class="logout-btn"
+                    onclick="logout()">
+
+                🚪 Logout
+
+            </button>
+
+        </div>
+
+    </aside>
+
+    <!-- ===================================================== -->
+    <!-- Main -->
+    <!-- ===================================================== -->
+
+    <main class="main-content">
+
+        <!-- ================================================ -->
+        <!-- Navbar -->
+        <!-- ================================================ -->
+
+        <header class="topbar">
+
+            <div class="left-topbar">
+
+                <button id="menuBtn"
+                        class="menu-btn">
+
+                    ☰
+
+                </button>
+
+                <h2>
+
+                    Dashboard
+
+                </h2>
+
+            </div>
+
+            <div class="center-topbar">
+
+                <input type="text"
+                       placeholder="Search...">
+
+            </div>
+
+            <div class="right-topbar">
+
+                <button class="notification-btn">
+
+                    🔔
+
+                </button>
+
+                <div class="admin-profile">
+
+                    <div class="avatar">
+
+                        V
+
+                    </div>
+
+                    <div class="admin-details">
+
+                        <h4 data-admin-name>
+
+                            Loading...
+
+                        </h4>
+
+                        <small data-admin-email>
+
+                            Loading...
+
+                        </small>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </header>
+
+        <!-- ================================================ -->
+        <!-- Welcome -->
+        <!-- ================================================ -->
+
+        <section class="welcome-section">
+
+            <div>
+
+                <h1>
+
+                    Welcome Back,
+
+                    <span data-admin-name>
+
+                        Admin
+
+                    </span>
+
+                </h1>
+
+                <p>
+
+                    Manage your complete portfolio
+                    from one powerful dashboard.
+
+                </p>
+
+            </div>
+
+            <div>
+
+                <button class="primary-btn">
+
+                    + Add Project
+
+                </button>
+
+            </div>
+
+        </section>
+
+        <!-- ================================================ -->
+        <!-- Statistics Cards -->
+        <!-- ================================================ -->
+
+        <section class="stats-grid">
+
+            <div class="stat-card">
+
+                <h3>Total Projects</h3>
+
+                <h2 id="totalProjects">0</h2>
+
+                <p>Active portfolio projects</p>
+
+            </div>
+
+            <div class="stat-card">
+
+                <h3>Total Skills</h3>
+
+                <h2 id="totalSkills">0</h2>
+
+                <p>Technical skills</p>
+
+            </div>
+
+            <div class="stat-card">
+
+                <h3>Certificates</h3>
+
+                <h2 id="totalCertificates">0</h2>
+
+                <p>Professional certifications</p>
+
+            </div>
+
+            <div class="stat-card">
+
+                <h3>Messages</h3>
+
+                <h2 id="totalMessages">0</h2>
+
+                <p>Unread contact messages</p>
+
+            </div>
+
+            <div class="stat-card">
+
+                <h3>Visitors</h3>
+
+                <h2 id="totalVisitors">0</h2>
+
+                <p>Total website visitors</p>
+
+            </div>
+
+            <div class="stat-card">
+
+                <h3>Experience</h3>
+
+                <h2 id="totalExperience">0</h2>
+
+                <p>Experience records</p>
+
+            </div>
+
+        </section>
+
+                <!-- ================================================ -->
+        <!-- Dashboard Content -->
+        <!-- ================================================ -->
+
+        <section class="dashboard-grid">
+
+            <!-- ============================================ -->
+            <!-- Analytics -->
+            <!-- ============================================ -->
+
+            <div class="dashboard-card large-card">
+
+                <div class="card-header">
+
+                    <h2>Portfolio Analytics</h2>
+
+                    <button class="view-btn">
+                        View Report
+                    </button>
+
+                </div>
+
+                <div class="chart-placeholder">
+
+                    <div class="chart-box">
+
+                        <h3>Visitors Analytics</h3>
+
+                        <div id="visitorChart"></div>
+
+                    </div>
+
+                    <div class="chart-box">
+
+                        <h3>Projects Overview</h3>
+
+                        <div id="projectChart"></div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+            <!-- ============================================ -->
+            <!-- Quick Actions -->
+            <!-- ============================================ -->
+
+            <div class="dashboard-card">
+
+                <div class="card-header">
+
+                    <h2>Quick Actions</h2>
+
+                </div>
+
+                <div class="quick-actions">
+
+                    <button class="action-btn">
+                        ➕ Add Project
+                    </button>
+
+                    <button class="action-btn">
+                        🧠 Add Skill
+                    </button>
+
+                    <button class="action-btn">
+                        🏆 Add Certificate
+                    </button>
+
+                    <button class="action-btn">
+                        🎓 Add Education
+                    </button>
+
+                    <button class="action-btn">
+                        💼 Add Experience
+                    </button>
+
+                    <button class="action-btn">
+                        ⚙ Website Settings
+                    </button>
+
+                </div>
+
+            </div>
+
+        </section>
+
+        <!-- ================================================ -->
+        <!-- Recent Messages -->
+        <!-- ================================================ -->
+
+        <section class="dashboard-card">
+
+            <div class="card-header">
+
+                <h2>
+
+                    Recent Contact Messages
+
+                </h2>
+
+                <button class="view-btn">
+
+                    View All
+
+                </button>
+
+            </div>
+
+            <div class="table-responsive">
+
+                <table>
+
+                    <thead>
+
+                        <tr>
+
+                            <th>Name</th>
+
+                            <th>Email</th>
+
+                            <th>Subject</th>
+
+                            <th>Status</th>
+
+                            <th>Date</th>
+
+                            <th>Action</th>
+
+                        </tr>
+
+                    </thead>
+
+                    <tbody id="recentMessages">
+
+                        <tr>
+
+                            <td colspan="6">
+
+                                No Messages Available
+
+                            </td>
+
+                        </tr>
+
+                    </tbody>
+
+                </table>
+
+            </div>
+
+        </section>
+
+        <!-- ================================================ -->
+        <!-- Latest Projects -->
+        <!-- ================================================ -->
+
+        <section class="dashboard-card">
+
+            <div class="card-header">
+
+                <h2>
+
+                    Latest Projects
+
+                </h2>
+
+                <button class="view-btn">
+
+                    Manage Projects
+
+                </button>
+
+            </div>
+
+            <div class="projects-grid">
+
+                <div class="project-item">
+
+                    <h3>Portfolio Website</h3>
+
+                    <p>
+
+                        Latest portfolio project will
+                        appear here.
+
+                    </p>
+
+                </div>
+
+                <div class="project-item">
+
+                    <h3>DineFlow AI</h3>
+
+                    <p>
+
+                        AI restaurant management system.
+
+                    </p>
+
+                </div>
+
+                <div class="project-item">
+
+                    <h3>Coming Soon</h3>
+
+                    <p>
+
+                        Add more projects from admin panel.
+
+                    </p>
+
+                </div>
+
+            </div>
+
+        </section>
+
+        <!-- ================================================ -->
+        <!-- Recent Activity -->
+        <!-- ================================================ -->
+
+        <section class="dashboard-card">
+
+            <div class="card-header">
+
+                <h2>
+
+                    Recent Activity
+
+                </h2>
+
+            </div>
+
+            <div class="activity-list">
+
+                <div class="activity-item">
+
+                    <div class="activity-dot"></div>
+
+                    <div>
+
+                        <h4>
+
+                            Dashboard Initialized
+
+                        </h4>
+
+                        <small>
+
+                            Ready to load live data
+
+                        </small>
+
+                    </div>
+
+                </div>
+
+                <div class="activity-item">
+
+                    <div class="activity-dot"></div>
+
+                    <div>
+
+                        <h4>
+
+                            Admin Logged In
+
+                        </h4>
+
+                        <small>
+
+                            Current Session Active
+
+                        </small>
+
+                    </div>
+
+                </div>
+
+                <div class="activity-item">
+
+                    <div class="activity-dot"></div>
+
+                    <div>
+
+                        <h4>
+
+                            MongoDB Connected
+
+                        </h4>
+
+                        <small>
+
+                            Backend Connected Successfully
+
+                        </small>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+                <!-- ================================================ -->
+        <!-- Bottom Dashboard -->
+        <!-- ================================================ -->
+
+        <section class="bottom-grid">
+
+            <!-- ============================== -->
+            <!-- System Status -->
+            <!-- ============================== -->
+
+            <div class="dashboard-card">
+
+                <div class="card-header">
+
+                    <h2>System Status</h2>
+
+                </div>
+
+                <div class="status-list">
+
+                    <div class="status-item">
+
+                        <span>🟢 Server</span>
+
+                        <span>Online</span>
+
+                    </div>
+
+                    <div class="status-item">
+
+                        <span>🟢 Database</span>
+
+                        <span>Connected</span>
+
+                    </div>
+
+                    <div class="status-item">
+
+                        <span>🟢 API</span>
+
+                        <span>Running</span>
+
+                    </div>
+
+                    <div class="status-item">
+
+                        <span>🟢 Authentication</span>
+
+                        <span>Secure</span>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+            <!-- ============================== -->
+            <!-- Portfolio Info -->
+            <!-- ============================== -->
+
+            <div class="dashboard-card">
+
+                <div class="card-header">
+
+                    <h2>Portfolio Information</h2>
+
+                </div>
+
+                <div class="info-list">
+
+                    <div class="info-item">
+
+                        <strong>Name</strong>
+
+                        <span data-admin-name>Loading...</span>
+
+                    </div>
+
+                    <div class="info-item">
+
+                        <strong>Email</strong>
+
+                        <span data-admin-email>Loading...</span>
+
+                    </div>
+
+                    <div class="info-item">
+
+                        <strong>Role</strong>
+
+                        <span data-admin-role>Loading...</span>
+
+                    </div>
+
+                    <div class="info-item">
+
+                        <strong>Version</strong>
+
+                        <span>v1.0.0</span>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+        <!-- ================================================ -->
+        <!-- Footer -->
+        <!-- ================================================ -->
+
+        <footer class="dashboard-footer">
+
+            <p>
+
+                © 2026 Portfolio Admin Dashboard.
+
+                Designed & Developed by
+
+                <strong>Vedant Wadekar</strong>
+
+            </p>
+
+        </footer>
+
+    </main>
+
+    <!-- ================================================ -->
+    <!-- Loading Overlay -->
+    <!-- ================================================ -->
+
+    <div id="loadingOverlay" class="loading-overlay">
+
+        <div class="loader"></div>
+
+        <p>Please wait...</p>
+
+    </div>
+
+    <!-- ================================================ -->
+    <!-- Toast Notification -->
+    <!-- ================================================ -->
+
+    <div id="toastContainer"
+         class="toast-container">
+
+    </div>
+
+    <!-- ================================================ -->
+    <!-- Delete Confirmation Modal -->
+    <!-- ================================================ -->
+
+    <div id="confirmModal"
+         class="modal">
+
+        <div class="modal-content">
+
+            <h2>
+
+                Confirm Action
+
+            </h2>
+
+            <p>
+
+                Are you sure you want to continue?
+
+            </p>
+
+            <div class="modal-actions">
+
+                <button class="btn-secondary"
+                        id="cancelBtn">
+
+                    Cancel
+
+                </button>
+
+                <button class="btn-danger"
+                        id="confirmBtn">
+
+                    Confirm
+
+                </button>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <!-- ================================================ -->
+    <!-- Scripts -->
+    <!-- ================================================ -->
+
+    <script src="js/auth.js"></script>
+
+    <script src="js/dashboard.js"></script>
+
+</body>
+
+</html>
