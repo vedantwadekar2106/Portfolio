@@ -9,12 +9,24 @@ const transporter = nodemailer.createTransport({
 });
 
 const sendEmail = async (options) => {
-    await transporter.sendMail({
-        from: `"Vedant Portfolio" <${process.env.EMAIL_USER}>`,
-        to: options.to,
-        subject: options.subject,
-        html: options.html,
-    });
+    try {
+        console.log("Sending email to:", options.to);
+
+        const info = await transporter.sendMail({
+            from: `"Vedant Portfolio" <${process.env.EMAIL_USER}>`,
+            to: options.to,
+            subject: options.subject,
+            html: options.html,
+        });
+
+        console.log("✅ Email sent:", info.messageId);
+
+    } catch (error) {
+        console.error("❌ Email Error:");
+        console.error(error);
+
+        throw error;
+    }
 };
 
 module.exports = sendEmail;
