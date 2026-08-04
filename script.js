@@ -116,7 +116,7 @@
 
 try {
 
-    const response = await fetch("http://localhost:5000/api/contact", {
+    const response = await fetch("https://portfolio-x1q6.onrender.com/api/contact", {
         method: "POST",
 
         headers: {
