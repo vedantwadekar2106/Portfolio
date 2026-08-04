@@ -10,7 +10,8 @@ const transporter = nodemailer.createTransport({
 
 const sendEmail = async (options) => {
     try {
-        console.log("Sending email to:", options.to);
+        await transporter.verify();
+        console.log("✅ SMTP connection verified");
 
         const info = await transporter.sendMail({
             from: `"Vedant Portfolio" <${process.env.EMAIL_USER}>`,
@@ -20,12 +21,9 @@ const sendEmail = async (options) => {
         });
 
         console.log("✅ Email sent:", info.messageId);
-
-    } catch (error) {
-        console.error("❌ Email Error:");
-        console.error(error);
-
-        throw error;
+    } catch (err) {
+        console.error("❌ Nodemailer Error:", err);
+        throw err;
     }
 };
 
