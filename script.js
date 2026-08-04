@@ -116,8 +116,10 @@
 
 try {
 
-    const response = await fetch("https://portfolio-x1q6.onrender.com/", {
-method: "POST",
+   const response = await fetch(
+    "https://portfolio-x1q6.onrender.com/api/contact",
+    {
+        method: "POST",
         headers: {
             "Content-Type": "application/json"
         },
@@ -127,7 +129,8 @@ method: "POST",
             phone: phone,
             message: message
         })
-    });
+    }
+);
 
     const result = await response.json();
 
