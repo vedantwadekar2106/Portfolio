@@ -28,7 +28,7 @@ Middlewares
 const allowedOrigins = [
     "http://localhost:5500",
     "http://127.0.0.1:5500",
-    "https://vportfoli.netlify.app"
+    "https://vedant12portfoli.netlify.app"
 ];
 
 app.use(
