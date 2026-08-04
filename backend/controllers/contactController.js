@@ -2,10 +2,13 @@ const Contact = require("../models/Contact");
 const sendEmail = require("../utils/sendEmail");
 
 const createContact = async (req, res, next) => {
+    console.log("1. Request received");
+
     try {
         const { fullName, email, phone, message } = req.body;
 
-        // Save contact in MongoDB
+        console.log("2. Data received");
+
         const contact = await Contact.create({
             fullName,
             email,
@@ -13,68 +16,35 @@ const createContact = async (req, res, next) => {
             message,
         });
 
-        try {
-            // Email to Admin
-            await sendEmail({
-                to: process.env.EMAIL_USER,
-                subject: "📩 New Portfolio Contact",
-                html: `
-                    <h2>New Portfolio Contact</h2>
+        console.log("3. Contact saved");
 
-                    <p><strong>Name:</strong> ${fullName}</p>
-                    <p><strong>Email:</strong> ${email}</p>
-                    <p><strong>Phone:</strong> ${phone}</p>
+        console.log("4. Sending admin email...");
+        await sendEmail({
+            to: process.env.EMAIL_USER,
+            subject: "Test",
+            html: "<h1>Test</h1>",
+        });
 
-                    <p><strong>Message:</strong></p>
+        console.log("5. Admin email sent");
 
-                    <p>${message}</p>
-                `,
-            });
+        console.log("6. Sending user email...");
+        await sendEmail({
+            to: email,
+            subject: "Test",
+            html: "<h1>Test</h1>",
+        });
 
-            // Auto Reply to User
-            await sendEmail({
-                to: email,
-                subject: "Thank you for contacting Vedant",
-                html: `
-                    <h2>Hello ${fullName},</h2>
-
-                    <p>Thank you for contacting me.</p>
-
-                    <p>
-                        I have successfully received your message and
-                        I will get back to you within 24 hours.
-                    </p>
-
-                    <br>
-
-                    <p>
-                        Regards,<br>
-                        <strong>Vedant Wadekar</strong>
-                    </p>
-                `,
-            });
-
-            console.log("✅ Emails sent successfully.");
-
-        } catch (emailError) {
-
-            console.error("❌ Email Error:", emailError);
-
-            // Contact is already saved, so don't fail the whole request.
-        }
+        console.log("7. User email sent");
 
         return res.status(201).json({
             success: true,
-            message: "Message submitted successfully.",
-            data: contact,
+            message: "Success"
         });
 
-    } catch (error) {
-        console.error("❌ Contact Controller Error:", error);
-        next(error);
+    } catch (err) {
+        console.error("ERROR:", err);
+        next(err);
     }
 };
 
-module.exports = {
-    createContact,
-};
+module.exports = { createContact };
