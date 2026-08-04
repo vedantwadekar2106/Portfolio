@@ -1,6 +1,5 @@
 require("dotenv").config();
 
-const errorHandler = require("./middleware/errorHandler");
 const express = require("express");
 const cors = require("cors");
 const helmet = require("helmet");
@@ -8,6 +7,7 @@ const morgan = require("morgan");
 const rateLimit = require("express-rate-limit");
 
 const connectDB = require("./config/db");
+const errorHandler = require("./middleware/errorHandler");
 
 const app = express();
 
@@ -27,22 +27,25 @@ Middlewares
 
 const allowedOrigins = [
     "http://localhost:5500",
-    "http://127.0.0.1:5500"
+    "http://127.0.0.1:5500",
+    "https://vportfoli.netlify.app"
 ];
 
 app.use(
     cors({
         origin: function (origin, callback) {
-
             if (!origin || allowedOrigins.includes(origin)) {
                 return callback(null, true);
             }
 
-            callback(new Error("Not allowed by CORS"));
+            return callback(new Error("Not allowed by CORS"));
         },
         credentials: true,
     })
 );
+
+app.use(helmet());
+
 app.use(express.json());
 
 app.use(express.urlencoded({ extended: true }));
@@ -73,23 +76,31 @@ Routes
 */
 
 app.get("/", (req, res) => {
-    res.json({
+    res.status(200).json({
         success: true,
         message: "Portfolio Backend Running 🚀",
     });
 });
 
 /*
+=====================================
 Contact Routes
+=====================================
 */
 
 app.use("/api/contact", require("./routes/contactRoutes"));
 
-
-app.use("/api/auth", require("./routes/authRoutes"));
 /*
 =====================================
-404
+Authentication Routes
+=====================================
+*/
+
+app.use("/api/auth", require("./routes/authRoutes"));
+
+/*
+=====================================
+404 Route
 =====================================
 */
 
@@ -102,13 +113,20 @@ app.use("*", (req, res) => {
 
 /*
 =====================================
+Error Handler
+=====================================
+*/
+
+app.use(errorHandler);
+
+/*
+=====================================
 Server
 =====================================
 */
-app.use(errorHandler);
+
 const PORT = process.env.PORT || 5000;
 
 app.listen(PORT, () => {
     console.log(`🚀 Server Running on Port ${PORT}`);
 });
-
