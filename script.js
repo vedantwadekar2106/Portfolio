@@ -116,13 +116,11 @@
 
 try {
 
-    const response = await fetch("https://portfolio-x1q6.onrender.com/api/contact", {
-        method: "POST",
-
+    const response = await fetch("https://portfolio-x1q6.onrender.com/", {
+method: "POST",
         headers: {
             "Content-Type": "application/json"
         },
-
         body: JSON.stringify({
             fullName: name,
             email: email,
